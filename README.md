@@ -5,7 +5,7 @@ Projeto desenvolvido durante a matéria de analise e processamento de imagens pa
 
 - Marcos Ani Cury Vinagre Silva, 684903, Ciências da Computação, Coração Eucarístico
 
-- Letícia Americano Lucas, , Ciências da Computação, Coração Eucarístico
+- Letícia Americano Lucas, 691290, Ciências da Computação, Coração Eucarístico
 
 # CRIC Cervix Cell Classification
 
