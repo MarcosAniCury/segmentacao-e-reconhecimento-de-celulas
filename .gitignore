@@ -127,9 +127,4 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-
-treino
-teste
-treino_mais
-googlenet_model.h5
-*.h5
+cropped_images/
