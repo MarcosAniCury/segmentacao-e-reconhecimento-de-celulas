@@ -9,8 +9,3 @@ def read_csv(file_path):
         next(csv_reader)
         for line in csv_reader:
             cells.append(Cell(*line))
-
-
-read_csv('../assets/classifications.csv')
-cells = CellListSingleton()
-print(cells.shared_list[0])
