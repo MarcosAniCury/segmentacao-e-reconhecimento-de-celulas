@@ -1,5 +1,5 @@
 from src.enums.cell_enums import BethesdaSystemEnum
-from typing import Type, List
+from typing import List
 
 
 class Cell:
