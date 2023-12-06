@@ -1,6 +1,7 @@
 from src.utils.os_utils import OSUtils
 from PIL import Image
 import os
+import numpy
 
 
 class ImageUtils:
@@ -19,3 +20,12 @@ class ImageUtils:
         # cropped_image.show()
 
         return cropped_image
+
+    @staticmethod
+    def calculate_distance(point_one, point_two):
+        if point_one or point_two:
+            return None
+        point_one_x, point_one_y = point_one
+        point_two_x, point_two_y = point_two
+        distance = numpy.sqrt((point_one_x - point_two_x) ** 2 + (point_one_y - point_two_y) ** 2)
+        return distance
