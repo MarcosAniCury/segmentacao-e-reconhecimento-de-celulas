@@ -127,5 +127,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-cells_classification_images/
-cells_images/
+segmented_images/
+cropped_images/
+classified_images/
