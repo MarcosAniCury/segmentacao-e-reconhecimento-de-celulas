@@ -1,7 +1,8 @@
 from src.utils.os_utils import OSUtils
 from PIL import Image
-import os
 import numpy
+import cv2
+import os
 
 
 class ImageUtils:
@@ -22,10 +23,30 @@ class ImageUtils:
         return cropped_image
 
     @staticmethod
-    def calculate_distance(point_one, point_two):
-        if point_one or point_two:
+    def calculate_euclidian_distance(point_one, point_two):
+        if not point_one or not point_two:
             return None
         point_one_x, point_one_y = point_one
         point_two_x, point_two_y = point_two
         distance = numpy.sqrt((point_one_x - point_two_x) ** 2 + (point_one_y - point_two_y) ** 2)
         return distance
+
+    @staticmethod
+    def calculate_eccentricity(contour):
+        # Calculate the moments of the contour
+        moments = cv2.moments(contour)
+
+        # Calculate the second order central moments
+        mu20 = moments['mu20']
+        mu02 = moments['mu02']
+        mu11 = moments['mu11']
+
+        # Calculate the major and minor axes
+        a = numpy.sqrt(0.5 * (mu20 + mu02 + numpy.sqrt((mu20 - mu02) ** 2 + 4 * mu11 ** 2)))
+        b = numpy.sqrt(0.5 * (mu20 + mu02 - numpy.sqrt((mu20 - mu02) ** 2 + 4 * mu11 ** 2)))
+
+        # Calculate eccentricity
+        eccentricity = numpy.sqrt(1 - (b ** 2 / a ** 2)) if a != 0 else 0
+
+        return eccentricity
+
