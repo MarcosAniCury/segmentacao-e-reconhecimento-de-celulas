@@ -1,34 +1,30 @@
-from src.utils.csv_utils import read_csv
+from src.controller.image_classification import ImageClassification
 from src.controller.image_preprocessor import ImagePreProcessor
-from src.controller.image_segment import ImageSegment
 from src.controller.image_descriptor import ImageDescriptor
+from src.controller.image_segment import ImageSegment
+from src.utils.csv_utils import read_csv
 from src.utils.os_utils import OSUtils
-
 import os
-import cv2
 
-#CSV_FILE_PATH = os.path.join(OSUtils.project_root, 'assets', 'classifications.csv')
+# TODO: trocar essa variável pelo input
+CSV_FILE_PATH = os.path.join(OSUtils.project_images_root, 'classifications.csv')
+# TODO: trocar esse variável pelo input
+INPUT_IMAGES_PATH = os.path.join(OSUtils.project_images_root, 'images')
+SEGMENTED_IMAGES_PATH = os.path.join(OSUtils.project_images_root, 'segmented_images')
+CROPPED_IMAGES_PATH = os.path.join(OSUtils.project_images_root, 'cropped_images')
+CLASSIFIED_IMAGES_PATH = os.path.join(OSUtils.project_images_root, 'classified_images')
 
-#read_csv(CSV_FILE_PATH)
+print("Segment Image")
+ImageSegment.segment_images(INPUT_IMAGES_PATH, SEGMENTED_IMAGES_PATH)
 
-#
-ImagePreProcessor.crop_image_per_cell()
+print("Read CSV")
+read_csv(CSV_FILE_PATH)
 
-#ImagePreProcessor.classification_cells()
+print("Crop Image")
+ImagePreProcessor.crop_image_per_cell(SEGMENTED_IMAGES_PATH, CROPPED_IMAGES_PATH)
 
-image_path = os.path.join(OSUtils.project_root, 'assets', 'cells_classification_images', 'LSIL', '7.png')
-segmented_image = ImageSegment.segment_image(image_path)
-original_image = cv2.imread(image_path)
+print("Descript Image")
+ImageDescriptor.descript_images(CROPPED_IMAGES_PATH)
 
-# Extraindo o contorno da forma
-contour = ImageDescriptor.extract_shape_contour(segmented_image)
-
-# Reconstruindo a imagem
-reconstructed_image = ImageDescriptor.reconstruct_image_contour(contour, original_image.shape)
-
-# Exibir a imagem original, a imagem segmentada e a imagem reconstruída
-cv2.imshow("Original Image", original_image)
-cv2.imshow("Segmented Image", segmented_image)
-cv2.imshow("Reconstructed Image", reconstructed_image)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
+print("Classification Image")
+ImageClassification.classify_images(CROPPED_IMAGES_PATH, CLASSIFIED_IMAGES_PATH)
