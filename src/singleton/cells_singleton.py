@@ -1,5 +1,8 @@
 from src.enums.cell_enums import BethesdaSystemEnum
+from src.utils.image_utils import ImageUtils
+from src.controller.image_descriptor import ImageDescriptor
 from typing import List
+import sys
 
 
 class Cell:
@@ -18,6 +21,9 @@ class Cell:
 
         self.nucleus_x = int(nucleus_x)
         self.nucleus_y = int(nucleus_y)
+        self.centroid = None
+        self.chain_code = None
+        self.distance_nucleus = None
 
         if self.nucleus_x < 1 or self.nucleus_x > 1384:
             raise Exception("nucleus_x is not inside 1 and 1384 pixels")
@@ -27,6 +33,12 @@ class Cell:
     def __str__(self):
         return (f"Cell:{self.cell_id}\nBethesda System:"
                 f"{self.bethesda_system}\nNucleus X:{self.nucleus_x}\nNucleus Y:{self.nucleus_y}\n\n")
+
+    def __eq__(self, other):
+        if isinstance(other, Cell):
+            return self.cell_id == other.cell_id
+        else:
+            return self.cell_id == other
 
 
 class CellListSingleton(object):
@@ -40,3 +52,25 @@ class CellListSingleton(object):
 
     def append(self, cell):
         self.shared_list.append(cell)
+
+    def find_cell_id(self, cell_id):
+        return [cell for cell in self.shared_list if cell.cell_id == cell_id][0]
+
+    def find_cells_based_in_image(self, image_name):
+        return [cell for cell in self.shared_list if cell.image_filename == image_name]
+
+    def insert_centroid_in_cell(self, contour, image_name):
+        centroid_contour = ImageDescriptor.calculate_centroid(contour)
+        cells_inside_image = self.find_cells_based_in_image(image_name)
+        best_cell_distance_centroid = sys.float_info.max
+        best_cell = None
+        for cell in cells_inside_image:
+            point = (cell.nucleus_x, cell.nucleus_y)
+            cell_point_distance_centroid = ImageUtils.calculate_distance(point, centroid_contour)
+            if cell_point_distance_centroid < best_cell_distance_centroid:
+                best_cell_distance_centroid = cell_point_distance_centroid
+                best_cell = cell
+        if best_cell is not None:
+            best_cell.centroid = centroid_contour
+
+
