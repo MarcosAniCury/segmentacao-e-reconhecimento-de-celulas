@@ -1,10 +1,25 @@
-import cv2
+from src.singleton.cells_singleton import CellListSingleton
+from src.utils.os_utils import OSUtils
+from PIL import Image
 import numpy as np
+import cv2
+import os
 
 
 class ImageSegment:
+
     @staticmethod
-    def segment_image(image_path):
+    def segment_images(INPUT_IMAGES_PATH, SEGMENTED_IMAGES_PATH):
+        files_in_folder = OSUtils.get_files_in_folder(INPUT_IMAGES_PATH)
+        OSUtils.mkdir(SEGMENTED_IMAGES_PATH)
+        for file in files_in_folder:
+            segmented_image = ImageSegment.segment_image(os.path.join(INPUT_IMAGES_PATH, file), file)
+            segmented_image.save(os.path.join(SEGMENTED_IMAGES_PATH, file))
+
+    @staticmethod
+    def segment_image(image_path, image_name):
+        cells = CellListSingleton()
+
         # Leitura da imagem
         image = cv2.imread(image_path)
 
@@ -34,9 +49,13 @@ class ImageSegment:
                 # Ajuste o valor de circularity conforme necessário
                 if circularity > 0.5:
                     filtered_contours.append(contour)
+                    cells.insert_centroid_in_cell(contour, image_name)
 
         # Criar máscara para os contornos filtrados
         cells_mask = np.zeros_like(gray)
-        cv2.drawContours(cells_mask, filtered_contours, -1, (255), thickness=cv2.FILLED)
+        cv2.drawContours(cells_mask, filtered_contours,
+                         -1, (255), thickness=cv2.FILLED)
 
-        return cells_mask
+        image = Image.fromarray(cells_mask)
+
+        return image
