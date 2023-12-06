@@ -14,8 +14,7 @@ class ImageSegmentController:
     def segment_images(INPUT_IMAGES_PATH, SEGMENTED_IMAGES_PATH, CSV_CELLS_PATH):
         files_in_folder = OSUtils.get_files_in_folder(INPUT_IMAGES_PATH)
         OSUtils.mkdir(SEGMENTED_IMAGES_PATH)
-        csv_cells = CSVController()
-        csv_cells.open_csv(CSV_CELLS_PATH)
+        csv_cells = CSVController(CSV_CELLS_PATH)
         for file in files_in_folder:
             segmented_image = ImageSegmentController.segment_image(os.path.join(INPUT_IMAGES_PATH, file), file, csv_cells)
             segmented_image.save(os.path.join(SEGMENTED_IMAGES_PATH, file))
@@ -59,7 +58,8 @@ class ImageSegmentController:
                     filtered_contours.append(contour)
                     cell = cells.insert_centroid_in_cell(contour, image_name)
                     if cell:
-                        csv_cells_data = [str(cell.cell_id), str(area), str(compactness), str(eccentricity)]
+                        csv_cells_data = [str(cell.cell_id), str(area), str(compactness),
+                                          str(eccentricity), cell.bethesda_system.name]
                         csv_cells.insert_row(csv_cells_data)
 
         # Criar máscara para os contornos filtrados
