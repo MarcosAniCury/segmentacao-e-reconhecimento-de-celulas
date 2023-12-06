@@ -125,6 +125,7 @@ venv.bak/
 .dmypy.json
 dmypy.json
 cells_characteristics.csv
+scatterplot.png
 
 # Pyre type checker
 .pyre/
