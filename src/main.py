@@ -1,9 +1,9 @@
 from src.controller.image_classification_controller import ImageClassificationController
 from src.controller.image_preprocessor_controller import ImagePreProcessorController
 from src.controller.image_descriptor_controller import ImageDescriptorController
+from src.utils.scatterplot_utils import format_items_to_scatterplot_pattern
 from src.controller.image_segment_controller import ImageSegmentController
 from src.controller.scatterplot_controller import ScatterplotController
-from src.utils.scatterplot_utils import format_items_to_scatterplot_pattern
 from src.utils.csv_utils import read_csv
 from src.utils.os_utils import OSUtils
 import os
@@ -17,6 +17,7 @@ CSV_CELLS_PATH = os.path.join(OSUtils.project_images_root, 'cells_characteristic
 SEGMENTED_IMAGES_PATH = os.path.join(OSUtils.project_images_root, 'segmented_images')
 CROPPED_IMAGES_PATH = os.path.join(OSUtils.project_images_root, 'cropped_images')
 CLASSIFIED_IMAGES_PATH = os.path.join(OSUtils.project_images_root, 'classified_images')
+TEST_TRAINING_IMAGES_PATH = os.path.join(OSUtils.project_images_root, 'test_training_images')
 
 print("Read CSV")
 read_csv(CSV_FILE_PATH)
@@ -35,3 +36,6 @@ ImageDescriptorController.descript_images(CROPPED_IMAGES_PATH)
 
 print("Classification Image")
 ImageClassificationController.classify_images(CROPPED_IMAGES_PATH, CLASSIFIED_IMAGES_PATH)
+
+print("Separate in test and training")
+ImageClassificationController.set_training_and_test(TEST_TRAINING_IMAGES_PATH, CLASSIFIED_IMAGES_PATH)
