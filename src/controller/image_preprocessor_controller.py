@@ -4,7 +4,7 @@ from src.utils.os_utils import OSUtils
 import os
 
 
-class ImagePreProcessor:
+class ImagePreProcessorController:
     @staticmethod
     def crop_image_per_cell(folder_path, folder_destiny):
         cells = CellListSingleton()

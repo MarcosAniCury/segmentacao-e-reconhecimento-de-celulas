@@ -4,7 +4,7 @@ from src.utils.os_utils import OSUtils
 import os
 
 
-class ImageClassification:
+class ImageClassificationController:
 
     @staticmethod
     def __create_folders(folder_cells_classification_path):
@@ -17,7 +17,7 @@ class ImageClassification:
     def classify_images(CROPPED_IMAGES_PATH, CLASSIFIED_IMAGES_PATH):
         cells = CellListSingleton()
         images_cells_path = OSUtils.get_files_in_folder(CROPPED_IMAGES_PATH)
-        ImageClassification.__create_folders(CLASSIFIED_IMAGES_PATH)
+        ImageClassificationController.__create_folders(CLASSIFIED_IMAGES_PATH)
 
         for image_cell_path in images_cells_path:
             file_path = os.path.join(CROPPED_IMAGES_PATH, image_cell_path)

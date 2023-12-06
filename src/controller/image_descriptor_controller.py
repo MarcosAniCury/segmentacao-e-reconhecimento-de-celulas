@@ -4,7 +4,7 @@ import cv2
 import os
 
 
-class ImageDescriptor:
+class ImageDescriptorController:
     @staticmethod
     def descript_images(CROPPED_IMAGES_PATH):
         from src.singleton.cells_singleton import CellListSingleton
@@ -18,8 +18,8 @@ class ImageDescriptor:
             cell_cvs_point = cell.nucleus_x, cell.nucleus_y
             image = cv2.imread(os.path.join(CROPPED_IMAGES_PATH, file))
 
-            cell.chain_code = ImageDescriptor.get_chain_code(image)
-            cell.distance_nucleus = ImageUtils.calculate_distance(cell_cvs_point, cell.centroid)
+            cell.chain_code = ImageDescriptorController.get_chain_code(image)
+            cell.distance_nucleus = ImageUtils.calculate_euclidian_distance(cell_cvs_point, cell.centroid)
 
     @staticmethod
     def extract_shape_contour(binary_image):
@@ -48,7 +48,7 @@ class ImageDescriptor:
 
         # Apply thresholding or any segmentation method you prefer
         _, binary_image = cv2.threshold(image_gray, 128, 255, cv2.THRESH_BINARY)
-        contour = ImageDescriptor.extract_shape_contour(binary_image)
+        contour = ImageDescriptorController.extract_shape_contour(binary_image)
 
         if contour is not None:
             epsilon = 0.02 * cv2.arcLength(contour, True)
