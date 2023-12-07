@@ -8,7 +8,7 @@ import numpy
 def __get_label(folder_class, is_binary):
     label = 0
     for i, bethesda in enumerate(BethesdaSystemEnum):
-        if bethesda == folder_class:
+        if bethesda.name == folder_class:
             label = i
             break
 

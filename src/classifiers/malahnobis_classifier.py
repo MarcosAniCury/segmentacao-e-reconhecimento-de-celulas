@@ -38,6 +38,7 @@ class MalahanobisClassifier:
             OSUtils.touch(metrics_txt)
 
         with open(metrics_txt, 'a') as file:
+            file.write(f"Malahnobis")
             file.write("Training Accuracy: {}\n".format(accuracy_train))
             file.write("Testing Accuracy: {}\n\n".format(accuracy_test))
 
