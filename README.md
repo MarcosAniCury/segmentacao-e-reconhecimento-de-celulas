@@ -1,5 +1,10 @@
-# Segmentação e Reconhecimento de Célula
-Projeto desenvolvido durante a matéria de analise e processamento de imagens para processar imagens tiradas de mamas
+# Analise-de-celulas
+Projeto desenvolvido durante a matéria de analise e processamento de imagens.
+
+# Observação
+Espera-se que na pasta assets tenha uma pasta images com todas as imagens do dataset
+
+https://github.com/MarcosAniCury/segmentacao-e-reconhecimento-de-celulas
 
 # Membros
 

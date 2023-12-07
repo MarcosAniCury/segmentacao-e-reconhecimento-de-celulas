@@ -23,3 +23,12 @@ class OSUtils:
     @staticmethod
     def get_files_in_folder(folder_path):
         return os.listdir(os.path.join(OSUtils.project_root, folder_path))
+
+    @staticmethod
+    def touch(file_path):
+        open(file_path, 'w').close()
+
+    @staticmethod
+    def write_row_in_file(file_path, row):
+        with open(file_path, 'a') as file:
+            file.write(row + '\n')
