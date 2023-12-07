@@ -3,8 +3,6 @@ import csv
 
 
 class CSVController:
-    csv_file = None
-
     def __init__(self, CSV_PATH, type='w'):
         self.open_csv(CSV_PATH, type)
 
