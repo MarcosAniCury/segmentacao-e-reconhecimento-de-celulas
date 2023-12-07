@@ -4,6 +4,8 @@ Projeto desenvolvido durante a matéria de analise e processamento de imagens.
 # Observação
 Espera-se que na pasta assets tenha uma pasta images com todas as imagens do dataset
 
+https://github.com/MarcosAniCury/segmentacao-e-reconhecimento-de-celulas
+
 # Membros
 
 - Marcos Ani Cury Vinagre Silva, 684903, Ciências da Computação, Coração Eucarístico
