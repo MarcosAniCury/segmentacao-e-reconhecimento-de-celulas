@@ -1,5 +1,8 @@
-# Analise-de-Mama
+# Analise-de-celulas
 Projeto desenvolvido durante a matéria de analise e processamento de imagens.
+
+# Observação
+Espera-se que na pasta assets tenha uma pasta images com todas as imagens do dataset
 
 # Membros
 
