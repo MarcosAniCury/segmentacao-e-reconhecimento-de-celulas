@@ -1,11 +1,3 @@
-from  src.view.screen.main_screen import MainScreen
-
-if __name__ == "__main__":
-    app = MainScreen()
-    app.run()
-
-
-    
 from src.controller.image_classification_controller import ImageClassificationController
 from src.controller.image_preprocessor_controller import ImagePreProcessorController
 from src.controller.image_descriptor_controller import ImageDescriptorController
@@ -34,6 +26,7 @@ TEST_TRAINING_BINARY_IMAGES_PATH = os.path.join(OSUtils.project_images_root, 'te
 
 print("Read CSV")
 read_csv(CSV_FILE_PATH)
+
 
 print("Segment Image")
 ImageSegmentController.segment_images(INPUT_IMAGES_PATH, SEGMENTED_IMAGES_PATH, CSV_CELLS_PATH)
@@ -80,6 +73,3 @@ history_binary, cm_test_binary, accuracy_test_binary = classifier_binary.train_m
 
 print("Training Multiclass Model")
 history_multiclass, cm_test_multiclass, accuracy_test_multiclass = classifier_multiclass.train_model(multiclass_model, class_mode='categorical')
-
-
-

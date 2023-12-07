@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 
+
 class ScatterplotController:
     @staticmethod
     def generate_scatterplot(class_data, SCATTERPLOT_PATH):
@@ -15,5 +16,3 @@ class ScatterplotController:
 
         plt.savefig(SCATTERPLOT_PATH)
 
-        # Exiba o gráfico
-        # plt.show()
