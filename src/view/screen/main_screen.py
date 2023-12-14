@@ -525,11 +525,3 @@ class MainScreen:
             self.active_button = button_name
             self.segment_buttons[button_name].config(state="active")
 
-            from src.view.screen.main_screen import MainScreen
-
-
-if __name__ == "__main__":
-    app = MainScreen()
-    app.run()
-
-
