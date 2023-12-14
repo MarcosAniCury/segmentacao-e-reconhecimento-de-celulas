@@ -12,6 +12,7 @@ from src.classifiers.malahnobis_classifier import MalahanobisClassifier
 from src.controller.scatterplot_controller import ScatterplotController
 from src.classifiers.resnet50_classifier import Restnet50Classifier
 from src.utils.resnet_classifier_utils import setup_binary_classification_structure
+from src.singleton.cells_singleton import CellListSingleton
 from src.utils.csv_utils import read_csv
 from src.utils.os_utils import OSUtils
 import os
@@ -421,7 +422,14 @@ class MainScreen:
 
     def image_container_change_crop(self, image_paths):
         if image_paths:
-            img = Image.open(image_paths[self.carousel_frame_images_current_index])
+            cells = CellListSingleton()
+
+            image_path = image_paths[self.carousel_frame_images_current_index]
+            img = Image.open(image_path)
+
+            cell_id = image_path.split("\\\\")[-1].strip(".")[0]
+            cell = cells.find_cell_id(cell_id);
+
             width, height = img.size
             new_width = int(width*2)
             new_height = int(height*2)
