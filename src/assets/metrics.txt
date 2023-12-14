@@ -1,0 +1,47 @@
+Malahnobis binary metrics:
+
+Testing Accuracy: 0.7159
+
+Confusion Matrix
+[
+    [690,159],
+    [159,111]
+]
+
+Malahnobis Multiclass metrics:
+
+Testing Accuracy: 0.6408
+
+Confusion Matrix
+[
+    [1, 0, 1, 7, 11, 1],
+    [9, 7, 25, 11, 30, 0],
+    [14, 7, 20, 6, 16, 0],
+    [5, 5, 41, 9, 43, 0],
+    [22, 19, 90, 20, 680, 2],
+    [2, 1, 4, 2, 8, 0]
+]
+
+Resnet50 Binary metrics:
+
+Testing Accuracy: 0.7758
+
+[
+    [390, 199],
+    [70, 541]
+]
+
+Resnet50 Multiclass metrics:
+
+Testing Accuracy: 0.5639
+
+[
+    [38, 12, 20, 42, 1, 17],
+    [2, 74, 0, 37, 15, 2],
+    [27, 10, 50, 21, 4, 18],
+    [7, 45, 8, 50, 15, 5],
+    [4, 63, 150, 29, 590, 0],
+    [32, 2, 33, 21, 6, 36]
+]
+
+

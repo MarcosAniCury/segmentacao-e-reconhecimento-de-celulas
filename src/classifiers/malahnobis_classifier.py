@@ -24,13 +24,10 @@ class MalahanobisClassifier:
         print("Testing Accuracy:", accuracy_test)
 
         # Calculate confusion matrix
-        cm_train = confusion_matrix(Y_train, predictions_train)
         cm_test = confusion_matrix(Y_test, predictions_test)
 
         # Print confusion matrix
-        print("Confusion Matrix - Training:")
-        print(cm_train)
-        print("Confusion Matrix - Testing:")
+        print("Confusion Matrix")
         print(cm_test)
 
         metrics_txt = os.path.join(OSUtils.project_images_root, 'metrics.txt')
@@ -42,10 +39,6 @@ class MalahanobisClassifier:
             file.write("Training Accuracy: {}\n".format(accuracy_train))
             file.write("Testing Accuracy: {}\n\n".format(accuracy_test))
 
-            # Write confusion matrix for training
-            file.write("Confusion Matrix - Training:\n")
-            file.write(str(cm_train) + '\n\n')
-
             # Write confusion matrix for testing
-            file.write("Confusion Matrix - Testing:\n")
+            file.write("Confusion Matrix\n")
             file.write(str(cm_test) + '\n\n')
