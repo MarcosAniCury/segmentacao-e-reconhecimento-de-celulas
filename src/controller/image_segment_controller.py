@@ -50,7 +50,6 @@ class ImageSegmentController:
                 area = cv2.contourArea(contour)
                 circularity = 4 * np.pi * area / (perimeter * perimeter)
 
-                # Ajuste o valor de circularity conforme necessário
                 if circularity > 0.5:
                     compactness = area / (perimeter * perimeter)
                     eccentricity = ImageUtils.calculate_eccentricity(contour)

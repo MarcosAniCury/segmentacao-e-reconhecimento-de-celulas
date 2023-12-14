@@ -427,8 +427,12 @@ class MainScreen:
             image_path = image_paths[self.carousel_frame_images_current_index]
             img = Image.open(image_path)
 
-            cell_id = image_path.split("\\\\")[-1].strip(".")[0]
-            cell = cells.find_cell_id(cell_id);
+            image_path_split = image_path.split('\\')
+            cell_id = int(image_path_split[len(image_path_split) - 1].strip(".")[0])
+            cell = cells.find_cell_id(cell_id)
+
+            print(cell.chain_code)
+            print(cell.distance_nucleus)
 
             width, height = img.size
             new_width = int(width*2)

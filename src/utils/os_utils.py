@@ -3,7 +3,7 @@ import shutil
 
 
 class OSUtils:
-    project_root = os.path.join(os.path.abspath(''))
+    project_root = os.path.join(os.path.abspath('src'))
     project_images_root = os.path.join(project_root, 'assets')
 
     @staticmethod
